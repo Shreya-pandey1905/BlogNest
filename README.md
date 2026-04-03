@@ -1,20 +1,25 @@
-# BlogNest (Next.js App Router)
+# BlogNest
 
-Production-ready full-stack blog content management system built with:
-- Next.js (App Router + API routes)
+BlogNest is a full-stack blogging platform built with Next.js and MongoDB, designed for a modern community-driven blogging experience with seamless content management.
+
+## Tech Stack
+
+- Next.js (App Router + API Routes)
 - MongoDB + Mongoose
 - Tailwind CSS
-- JWT authentication
+- JWT Authentication
 
 ## Features
 
-- Authentication: register/login/logout with JWT cookie auth
-- Roles: first registered user becomes `admin`; others are `user`
-- Admin post management: create, edit, delete posts
-- Post metadata: categories, tags, cover image upload
-- Public blog: latest posts, listing page, category filter, search
-- Comments: authenticated users can comment, admins can moderate/delete
-- Admin dashboard: manage posts and comments from one place
+- User authentication (register, login, logout)
+- Role-based access (first user becomes admin)
+- Admin post management (create, edit, delete)
+- Blog categories and tags
+- Cover image upload
+- Public blog listing and search
+- Comment system for authenticated users
+- Admin dashboard for managing posts and comments
+
 
 ## Project Structure
 
@@ -68,3 +73,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - Use managed MongoDB in production
 - Run behind HTTPS for secure cookies
 - Add rate limiting and CSRF hardening for stricter security
+
+# BlogNest
+BlogNest is a full-stack content management system built with Next.js and MongoDB, designed for a modern, community-driven blogging experience with high-end Indigo aesthetics and seamless content management.
+
