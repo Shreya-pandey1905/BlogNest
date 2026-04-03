@@ -23,4 +23,259 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── CKEditor editable area ─────────────────────────────────────────────── */
+/* Force white background + dark text regardless of site dark-mode theme.   */
+.ck.ck-editor__editable,
+.ck.ck-editor__editable.ck-focused,
+.ck-editor__editable_inline {
+  min-height: 320px;
+  background: #ffffff !important;
+  color: #111827 !important;
+  caret-color: #111827 !important;
+}
+
+/* All inline content should stay dark */
+.ck.ck-editor__editable *:not(.ck-widget *) {
+  color: inherit;
+}
+
+/* Placeholder text */
+.ck.ck-editor__editable .ck-placeholder::before {
+  color: #9ca3af !important;
+}
+
+/* Make the toolbar always light */
+.ck.ck-toolbar {
+  background: #f9fafb !important;
+  border-color: #e5e7eb !important;
+}
+
+.ck.ck-toolbar .ck-button {
+  color: #374151 !important;
+}
+
+.ck.ck-toolbar .ck-button:hover,
+.ck.ck-toolbar .ck-button.ck-on {
+  background: #e5e7eb !important;
+  color: #111827 !important;
+}
+
+/* Heading styles inside the editor */
+.ck-editor__editable h1 {
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  margin: 1.5rem 0 1rem !important;
+  line-height: 1.2 !important;
+}
+
+.ck-editor__editable h2 {
+  font-size: 1.875rem !important;
+  font-weight: 700 !important;
+  margin: 1.25rem 0 0.75rem !important;
+  line-height: 1.25 !important;
+}
+
+.ck-editor__editable h3 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin: 1rem 0 0.5rem !important;
+}
+
+.ck-editor__editable p {
+  margin: 0 0 1rem !important;
+  line-height: 1.7 !important;
+}
+
+/* ── Media widget — make it obvious it's selectable/deletable ───────────── */
+.ck-widget.ck-widget_selected {
+  outline: 3px solid #3b82f6 !important;
+  outline-offset: 2px;
+}
+
+/* Tooltip hint shown on hover over any widget */
+.ck-widget:hover::after {
+  content: "Click to select · then press Delete to remove";
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: rgba(17, 24, 39, 0.85);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+  letter-spacing: 0.01em;
+}
+
+.ck-widget {
+  position: relative;
+}
+
+/* Ensure iframes in the editor don't steal focus from the widget, allowing deletion works correctly via keyboard */
+.ck-editor__editable .ck-media__wrapper iframe {
+  pointer-events: none;
+}
+
+.rich-content p {
+  margin: 0 0 1rem;
+  line-height: 1.85;
+}
+
+.rich-content h1,
+.rich-content h2,
+.rich-content h3,
+.rich-content h4,
+.rich-content h5,
+.rich-content h6 {
+  margin: 1.4rem 0 0.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.rich-content ul,
+.rich-content ol {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.rich-content li {
+  margin: 0.25rem 0;
+}
+
+.rich-content blockquote {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid rgb(79 70 229 / 1);
+  background: rgb(79 70 229 / 0.06);
+  border-radius: 0.5rem;
+}
+
+.rich-content a {
+  color: rgb(79 70 229 / 1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rich-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1rem 0;
+}
+
+.rich-content code {
+  background: rgb(244 244 245 / 1);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.375rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+.rich-content pre {
+  background: rgb(15 23 42 / 1);
+  color: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid rgb(226 232 240 / 1);
+}
+
+.rich-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.rich-content figure {
+  margin: 1rem 0;
+}
+
+.rich-content figure.media {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: rgb(9 9 11 / 1);
+}
+
+.rich-content figure.media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.rich-content oembed[url*="youtube.com"],
+.rich-content oembed[url*="youtu.be"] {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgb(9 9 11 / 1);
+}
+
+@keyframes landingGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animated purple -> blue background for the home (landing) page. */
+.landing-gradient-bg {
+  position: absolute;
+  top: -25vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140vw;
+  height: 160vh;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 20% 10%, rgba(99, 102, 241, 0.35) 0%, rgba(99, 102, 241, 0) 60%),
+    radial-gradient(55% 35% at 80% 30%, rgba(79, 70, 229, 0.30) 0%, rgba(79, 70, 229, 0) 60%),
+    radial-gradient(45% 30% at 50% 85%, rgba(6, 182, 212, 0.22) 0%, rgba(6, 182, 212, 0) 65%),
+    linear-gradient(120deg, rgba(99, 102, 241, 0.12), rgba(79, 70, 229, 0.10), rgba(6, 182, 212, 0.08));
+  background-size: 200% 200%;
+  animation: landingGradientShift 18s ease-in-out infinite;
+  filter: blur(60px) saturate(1.1);
+  opacity: 0.9;
+}
+
+/* Used on gradient text elements with Tailwind's `bg-gradient-*` utilities. */
+.landing-text-gradient-animate {
+  background-size: 200% 200%;
+  animation: landingGradientShift 12s ease-in-out infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .landing-gradient-bg {
+    opacity: 0.65;
+    filter: blur(60px) saturate(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .landing-gradient-bg,
+  .landing-text-gradient-animate {
+    animation: none;
+  }
 }
