@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type CurrentUser = {
   role: "admin" | "user";
@@ -64,6 +65,8 @@ export default function Navbar() {
               <span>Create Blog</span>
             </Link>
           )}
+
+          <ThemeToggle />
 
           <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800 mx-1" />
 

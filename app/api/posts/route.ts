@@ -4,6 +4,7 @@ import Post from "@/models/Post";
 import "@/models/User";
 import { errorResponse, okResponse } from "@/lib/api";
 import { getAuthUserFromRequest } from "@/lib/auth";
+import { getCategoryMeta } from "@/utils/categories";
 
 export async function GET(req: NextRequest) {
   try {
@@ -25,7 +26,9 @@ export async function GET(req: NextRequest) {
     }
 
     const posts = await Post.find(query).populate("author", "name").sort({ createdAt: -1 });
-    return okResponse({ posts });
+    const categoryNames = await Post.distinct("category");
+    const categories = categoryNames.map((name: string) => getCategoryMeta(name));
+    return okResponse({ posts, categories });
   } catch {
     return errorResponse("Failed to fetch posts", 500);
   }
