@@ -70,11 +70,11 @@ export default function BlogListClient() {
   }
 
   return (
-    <section className="space-y-8 px-4 sm:px-0">
-      <div className="flex flex-col gap-4 border-b border-zinc-100 pb-6 dark:border-zinc-800 md:flex-row md:items-center md:justify-between">
+    <section className="space-y-6 md:space-y-8">
+      <div className="flex flex-col gap-3 border-b border-zinc-100 pb-6 dark:border-zinc-800 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">Discovery Hub</h1>
-          <p className="mt-1 text-zinc-500 dark:text-zinc-400">Explore articles across technology, design, and more.</p>
+          <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-3xl md:text-4xl">Discovery Hub</h1>
+          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 sm:text-base">Explore articles across technology, design, and more.</p>
         </div>
         <div className="flex items-center gap-2 text-sm font-medium">
           <span className="text-zinc-500 dark:text-zinc-400">Found {posts.length} posts</span>
@@ -83,7 +83,7 @@ export default function BlogListClient() {
 
       <form
         key={`${search}-${category}`}
-        className="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900 md:flex-row"
+        className="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900 sm:p-6 md:flex-row"
         action="/blog"
         method="get"
       >
@@ -128,7 +128,7 @@ export default function BlogListClient() {
       </form>
 
       {posts.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <BlogCard key={post._id} post={post} />
           ))}

@@ -39,7 +39,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full bg-zinc-50 text-zinc-900 transition-colors dark:bg-zinc-950 overflow-x-hidden">
         <Navbar />
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">{children}</main>
+        <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 md:px-8 md:py-10 lg:px-12">{children}</main>
         <Footer />
         <ScrollControls />
       </body>
