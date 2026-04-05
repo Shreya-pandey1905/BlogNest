@@ -32,9 +32,9 @@ export async function POST(req: NextRequest) {
     }
 
     user.password = await hashPassword(passwordValue);
-    user.passwordResetOtpHash = undefined;
-    user.passwordResetOtpExpiresAt = undefined;
-    user.passwordResetOtpVerifiedAt = undefined;
+    user.passwordResetOtpHash = null;
+    user.passwordResetOtpExpiresAt = null;
+    user.passwordResetOtpVerifiedAt = null;
     await user.save();
 
     return okResponse({ message: "Password updated successfully" }, 200);

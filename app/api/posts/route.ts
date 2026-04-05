@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { Types } from "mongoose";
 import { connectToDatabase } from "@/lib/db";
 import Post from "@/models/Post";
 import "@/models/User";
@@ -12,10 +13,14 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search");
     const category = searchParams.get("category");
+    const author = searchParams.get("author");
 
     const query: Record<string, unknown> = {};
     if (category) {
       query.category = category;
+    }
+    if (author && Types.ObjectId.isValid(author)) {
+      query.author = author;
     }
     if (search) {
       query.$or = [

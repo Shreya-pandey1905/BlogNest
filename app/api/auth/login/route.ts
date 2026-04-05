@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     await connectToDatabase();
     const user = await User.findOne({ email });
 
-    if (!user) {
+    if (!user || !user.password) {
       return errorResponse("Invalid email or password", 401);
     }
 
@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
 
     const res = NextResponse.json({
       message: "Login successful",
+      token,
       user: {
         id: user._id,
         name: user.name,

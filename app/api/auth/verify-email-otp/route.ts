@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
     }
 
     user.isEmailVerified = true;
-    user.emailOtpHash = undefined;
-    user.emailOtpExpiresAt = undefined;
+    user.emailOtpHash = null;
+    user.emailOtpExpiresAt = null;
     await user.save();
 
     const token = signToken({
