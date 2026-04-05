@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
     }
 
     user.isEmailVerified = true;
-    user.emailOtpHash = null;
-    user.emailOtpExpiresAt = null;
+    user.emailOtpHash = undefined;
+    user.emailOtpExpiresAt = undefined;
     await user.save();
 
     const token = signToken({
@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
 
     const res = NextResponse.json({
       message: "Email verified successfully",
+      token,
       user: {
         id: user._id,
         name: user.name,

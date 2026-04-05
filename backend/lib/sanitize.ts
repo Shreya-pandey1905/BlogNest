@@ -1,4 +1,4 @@
-import sanitizeHtml from "sanitize-html";
+import sanitizeHtml, { Tag } from "sanitize-html";
 
 // Sanitizes CKEditor output for safe rendering.
 export function sanitizePostContentForRender(html: string): string {
@@ -31,15 +31,19 @@ export function sanitizePostContentForRender(html: string): string {
     allowedIframeHostnames: ["www.youtube.com", "youtube.com", "youtu.be", "www.youtube-nocookie.com", "player.vimeo.com"],
     allowProtocolRelative: true,
     transformTags: {
-      oembed: (_tagName, attribs) => {
+      oembed: (_tagName: string, attribs: Record<string, string>): Tag => {
         const rawUrl = attribs.url ?? "";
         if (!rawUrl) {
-          return { tagName: "span", text: "" };
+          return { tagName: "span", attribs: {} as Record<string, string>, text: "" };
         }
 
         const embedUrl = toEmbedUrl(rawUrl);
         if (!embedUrl) {
-          return { tagName: "a", attribs: { href: rawUrl, rel: "noopener noreferrer", target: "_blank" }, text: rawUrl };
+          return {
+            tagName: "a",
+            attribs: { href: rawUrl, rel: "noopener noreferrer", target: "_blank" } as Record<string, string>,
+            text: rawUrl,
+          };
         }
 
         return {
@@ -47,10 +51,10 @@ export function sanitizePostContentForRender(html: string): string {
           attribs: {
             src: embedUrl,
             title: "Embedded media",
-            allow:
-              "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
             allowfullscreen: "true",
-          },
+          } as Record<string, string>,
+          text: "",
         };
       },
     },
