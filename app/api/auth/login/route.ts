@@ -15,7 +15,12 @@ export async function POST(req: NextRequest) {
     await connectToDatabase();
     const user = await User.findOne({ email });
 
-    if (!user || !user.password) {
+    if (!user) {
+      return errorResponse("Invalid email or password", 401);
+    }
+
+    const storedPasswordHash = user.password;
+    if (storedPasswordHash == null || storedPasswordHash === "") {
       return errorResponse("Invalid email or password", 401);
     }
 
@@ -23,7 +28,7 @@ export async function POST(req: NextRequest) {
       return errorResponse("Please verify your email before logging in", 403);
     }
 
-    const validPassword = await comparePassword(password, user.password);
+    const validPassword = await comparePassword(password, storedPasswordHash);
     if (!validPassword) {
       return errorResponse("Invalid email or password", 401);
     }
